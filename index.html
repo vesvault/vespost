@@ -1,0 +1,39 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://ves.host/pub/libVES.js"></script>
+    <script type="text/javascript" src="vespost.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.37/ua-parser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="vespost.css" />
+    <meta id="meta_viewport" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <title>VESpost: e2ee Collaborative Sticky Notes</title>
+</head>
+<body>
+<script type="text/javascript">
+var ves = libVES.subtle('demo');
+
+function demo_unlock(unlock) {
+    demo_status('Unlocking...');
+    ves.unlock().then((ves) => (new VESpost(ves, demo_lock), demo_status('Unlocked: ' + ves.short()))).catch((er) => demo_status('<span class="error">' + er + '</span>'));
+    return false;
+}
+function demo_lock() {
+    demo_status('Locking...');
+    ves.lock().then(() => demo_status('Locked.')).catch((er) => demo_status('<span class="error">' + er + '</span>'));
+    return false;
+}
+function demo_status(msg) {
+    document.getElementById('status').innerHTML = msg;
+}
+
+ves.unlocked().then((ok) => (ok && demo_unlock()));
+VV.Animate.intro(document.getElementById('demo_intro'), 'https://www.vesvault.com/assets/img/intro/', 1600);
+</script>
+
+<button type="button" onclick="return demo_unlock();">Launch VESpost</button>
+<br/>
+<br/>
+<div id="status"></div>
+
+
+</body>
+</html>

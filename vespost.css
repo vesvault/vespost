@@ -1,0 +1,557 @@
+.vespost {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff;
+    overflow: hidden;
+    font-family: Arial;
+    animation-name: fadein;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+.vespost .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 32px;
+    background-color: #bfbfbf;
+    box-sizing: border-box;
+    padding: 8px 48px 4px 16px;
+}
+
+.vespost .header::before {
+    display: inline;
+    content: "VESpost: ";
+    font-weight: 700;
+    color: #00005f;
+}
+
+.vespost .header .account {
+    display: inline;
+    font-weight: 700;
+}
+
+.vespost .header .dismiss {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.vespost .items {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.vespost .items.updating .item {
+    display: none;
+}
+
+.vespost .items .spinner {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 16px;
+    height: 16px;
+}
+
+.vespost button {
+    border: none;
+    background: transparent;
+    font-size: 12pt;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    font-weight: 700;
+    color: #00007f;
+    cursor: pointer;
+}
+
+.vespost button:hover {
+    color: #001fff;
+}
+
+.vespost .item {
+    display: inline-block;
+    position: relative;
+    width: 320px;
+    background-color: #dfdfdf;
+    vertical-align: top;
+    margin: 4px;
+    animation-name: fadein;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.vespost .item.deleted::after {
+    display: block;
+    z-index: 2000;
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5f5f5f;
+    content: 'REMOVED';
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 900;
+    font-size: 16pt;
+    color: #ffffef;
+}
+
+.vespost .item .title {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #00003f;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #ffffbf;
+    padding: 4px 20px 4px 4px;
+    width: 100%;
+    height: 24px;
+    box-sizing: border-box;
+}
+
+.vespost .item .title .uri:empty::before {
+    font-style: italic;
+    font-weight: 400;
+    content: "New Item";
+}
+
+.vespost .item .title button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: #dfffff;
+}
+
+.vespost .item .title button:hover {
+    color: #9fbfbf;
+}
+
+.vespost .item .info {
+    position: relative;
+    width: 100%;
+    height: 96px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.vespost .item .info .value {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.vespost .item.readonly .info .value {
+    background-color: transparent;
+}
+
+.vespost .item.loading .info .value {
+    visibility: hidden;
+}
+
+.vespost .item .info .valueerror {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #dfdfdf;
+    color: #bf0000;
+    font-size: 10pt;
+    text-align: center;
+    padding: 8px;
+}
+
+.vespost .item .info .valueerror:empty {
+    display: none;
+}
+
+
+.vespost .item .share .uri {
+}
+
+.vespost .item .share.deleted .uri {
+    text-decoration: line-through;
+    color: #9f9f9f;
+}
+
+.vespost .item .share:not(.current):not(.deleted) .uri {
+    color: #9f7f0f;
+}
+
+.vespost .item .share.owner .uri {
+    font-weight: 700;
+}
+
+.vespost .item .shares {
+    height: 108px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    padding: 16px 4px 4px 4px;
+    box-sizing: border-box;
+}
+
+.vespost .item .shares::before {
+    display: block;
+    content: "Access List:";
+    font-weight: 700;
+    font-size: 10pt;
+    color: #00005f;
+    position: absolute;
+    top: 0;
+    left: 4px;
+    right: 0;
+    padding: 0 0 0 4px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.vespost .item .shares .share {
+    width: 100%;
+    position: relative;
+    line-height: 1.25;
+}
+
+.vespost .item .shares .share:hover {
+    background-color: #ffffef;
+}
+
+.vespost .item .shares .share .uri {
+    display: block;
+    padding: 0 18px 0 4px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.vespost .item .shares .share button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+.vespost .item .shares .share.deleted .remove, .vespost .item .shares .share:not(.deleted) .add {
+    display: none;
+}
+
+.vespost .updating .standby::after, .vespost .loading .standbyload::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ffffbf, #00c080);
+    content: '\a0';
+    animation-name: spin;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.vespost .newshare {
+    width: 100%;
+    position: relative;
+    padding: 4px 26px 4px 4px;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.vespost .newshare .uri {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.vespost .newshare .add {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+
+.vespost .newshare .dropdown {
+    position: absolute;
+    left: 4px;
+    right: 26px;
+    padding: 4px;
+    box-sizing: border-box;
+    border: solid 1px #bfbfbf;
+    bottom: 100%;
+    z-index: 1500;
+    background-color: #ffffff;
+    text-align: right;
+}
+
+.vespost .newshare:not(.editing) .dropdown {
+    display: none;
+}
+
+.vespost .item .errors {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    padding: 4px 16px 4px 4px;
+    background-color: #df0000;
+    color: #ffdfdf;
+}
+
+.vespost .item .errors:has(.error:empty) {
+    display: none;
+}
+
+.vespost .item .errors .error {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.vespost .item .errors .dismiss {
+    color: #ffdfdf;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.vespost .item.readonly .share:not(.enabled) button, .vespost .item.readonly .newshare button {
+    color: #bfbfbf;
+    pointer-events: none;
+}
+
+.vespost .item.readonly .newshare .uri {
+    background: transparent;
+    pointer-events: none;
+    border-color: #bfbfbf;
+}
+
+.vespost .item .menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 5000;
+    padding-top: 24px;
+}
+
+.vespost .item .menu .menuitem {
+    display: block;
+    width: 100%;
+    max-width: 120px;
+    background-color: #bfbfbf;
+    color: #00009f;
+    text-decoration: none;
+    padding: 4px 8px 4px 8px;
+    margin: 0 0 0 auto;
+}
+
+.vespost .item .menu .menuitem:hover {
+    background-color: #ffffbf;
+}
+
+.vespost .item .log {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #dfefd8;
+    z-index: 4000;
+}
+
+.vespost .item .log::before {
+    content: "History Log:";
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    right: 8px;
+    color: #00005f;
+    font-size: 10pt;
+    font-weight: 700;
+}
+
+.vespost .item .log .dismiss {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+}
+
+.vespost .item .log .events {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.vespost .item .log .events::after {
+    display: block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin: 4px auto 4px 4px;
+    content: ".";
+}
+
+.vespost .item .log .event {
+    padding: 8px;
+}
+
+.vespost .item .log .event .at {
+    font-size: 10pt;
+    color: #00005f;
+    display: block;
+}
+
+.vespost .item .log .event .at::after {
+    content: ": ";
+}
+
+.vespost .item .log .event .id {
+    font-size: 10pt;
+    color: #007f00;
+    font-weight: 700;
+}
+
+.vespost .item .log .event .id::after {
+    content: " ";
+}
+
+.vespost .item .log .event .type {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #5f009f;
+}
+
+.vespost .item .log .event .version {
+    font-size: 10pt;
+    color: #005f9f;
+}
+
+.vespost .item .log .event .version::before {
+    content: " (";
+}
+
+.vespost .item .log .event .version::after {
+    content: ")";
+}
+
+.vespost .item .log .event .share {
+    display: block;
+    padding: 0 8px 0 8px;
+    word-break: break-all;
+}
+
+.vespost .item .log .event .share .version {
+    color: #bf5f1f;
+}
+
+.vespost .item .log .event .author {
+    display: block;
+    padding: 0 8px 0 16px;
+    word-break: break-all;
+}
+
+.vespost .item .log .event .author .uri {
+    font-size: 10pt;
+    color: #003fff;
+}
+
+.vespost .item .log .event .author .uri::before {
+    content: '\00ab\00a0 ';
+    color: #00005f;
+}
+
+.vespost .item .log .event .author .sessid {
+    font-size: 10pt;
+    color: #5f5f00;
+}
+
+.vespost .item .log .event .author .sessid::before {
+    content: " (";
+}
+
+.vespost .item .log .event .author .sessid::after {
+    content: ")";
+}
+
+.vespost .item .log .event .author .remote {
+    display: block;
+    word-break: break-all;
+    color: #005f3f;
+    font-size: 9pt;
+}
+
+.vespost .item .log .event .author .remote .ua {
+    color: #7f7f00;
+    word-break: break-word;
+}
+
+.vespost .item .log .event .author .remote .ua::before {
+    content: ' ';
+}
+
+.vespost .item .log .event .author .remote .ua:empty::before {
+    content: '(session details are restricted)';
+    color: #bfbfbf;
+}
+
+.vespost .item .log .event .value {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 4px 8px 0 8px;
+    box-sizing: border-box;
+}
+
+.vespost .item .log .event .value textarea {
+    width: 100%;
+    height: 100%;
+    font-size: 10pt;
+    background: transparent;
+    border: solid 1px #bfbfbf;
+}
+
+.vespost .item .log .event .value .error {
+    color: #9f0000;
+    font-size: 10pt;
+}
