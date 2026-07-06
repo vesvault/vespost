@@ -1,13 +1,64 @@
-<html>
+<!DOCTYPE html>
+<!--
+             ___       ___
+            /   \     /   \    VESvault
+            \__ /     \ __/    Encrypt Everything without fear of losing the Key
+               \\     //                   https://vesvault.com https://ves.host
+                \\   //
+        ___      \\_//
+       /   \     /   \         VESpost: e2ee Collaborative Sticky Notes
+       \__ /     \ __/         libVES.subtle.js Integration Demo
+          \\     //
+           \\   //
+            \\_//
+            /   \
+            \___/
+
+
+  (c) 2025 - 2026 VESvault Corp
+  Jim Zubov <jz@vesvault.com>
+
+  SPDX-License-Identifier: Apache-2.0
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License in the accompanying LICENSE
+  file, or at http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  implied.  See the License for the specific language governing
+  permissions and limitations under the License.
+-->
+<html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <meta id="meta_viewport" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <meta name="description" content="End-to-end encrypted collaborative sticky notes — a small libVES.subtle.js demo/template with per-note sharing, roles, key recovery, and an authoritative change log." />
+    <meta name="keywords" content="end-to-end encryption, E2EE, libVES, VESvault, encrypted notes, collaborative notes, key recovery, zero-knowledge, sticky notes, demo, template" />
+    <meta name="author" content="VESvault Corp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="VESpost — e2ee collaborative sticky notes" />
+    <meta property="og:description" content="A tiny libVES.subtle.js demo: shared, end-to-end encrypted notes with per-note sharing, roles, key recovery, and an authoritative change log — no app server." />
+    <meta property="og:url" content="https://vesvault.github.io/vespost/" />
+    <meta name="twitter:card" content="summary" />
+    <title>VESpost: e2ee Collaborative Sticky Notes</title>
     <script type="text/javascript" src="https://ves.host/pub/libVES.js"></script>
     <script type="text/javascript" src="vespost.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.37/ua-parser.min.js"></script>
     <link rel="stylesheet" type="text/css" href="vespost.css" />
-    <meta id="meta_viewport" name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
-    <title>VESpost: e2ee Collaborative Sticky Notes</title>
 </head>
 <body>
+
+<h1>VESpost</h1>
+<p>End-to-end encrypted collaborative sticky notes &mdash; a libVES.subtle.js demo.</p>
+
+<button type="button" onclick="return demo_unlock();">Launch VESpost</button>
+<br/>
+<br/>
+<div id="status"></div>
+
 <script type="text/javascript">
 var ves = libVES.subtle('demo');
 
@@ -26,14 +77,7 @@ function demo_status(msg) {
 }
 
 ves.unlocked().then((ok) => (ok && demo_unlock()));
-VV.Animate.intro(document.getElementById('demo_intro'), 'https://www.vesvault.com/assets/img/intro/', 1600);
 </script>
-
-<button type="button" onclick="return demo_unlock();">Launch VESpost</button>
-<br/>
-<br/>
-<div id="status"></div>
-
 
 </body>
 </html>
