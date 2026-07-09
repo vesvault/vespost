@@ -48,11 +48,58 @@
     <script type="text/javascript" src="vespost.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/1.0.37/ua-parser.min.js"></script>
     <link rel="stylesheet" type="text/css" href="vespost.css" />
+    <style type="text/css">
+/* Launcher page chrome only — the VESpost app UI is styled by vespost.css */
+body {
+    background-color: #000000;
+    color: #9f9f9f;
+    font-family: Verdana, sans-serif;
+    padding: 24px;
+}
+h1 {
+    font-size: 48pt;
+    color: #5f9fbf;
+    margin: 16px 0;
+}
+body > p {
+    font-size: 14pt;
+    color: #5fbf9f;
+}
+body > p.links {
+    font-size: 11pt;
+    color: #9f9f9f;
+}
+body > p.links a,
+body > p.links a:visited {
+    color: #9f9f9f;
+}
+body > button {
+    display: block;
+    margin: 32px 8px 8px 8px;
+    background-color: #3f3f3f;
+    color: #9fbfdf;
+    padding: 12px 24px;
+    border-radius: 32px;
+    font-size: 24pt;
+    cursor: pointer;
+    border: none;
+}
+body > button:hover {
+    background-color: #7f7f7f;
+}
+#status {
+    font-size: 12pt;
+}
+#status .error {
+    color: #df5f5f;
+}
+    </style>
 </head>
 <body>
 
 <h1>VESpost</h1>
 <p>End-to-end encrypted collaborative sticky notes &mdash; a libVES.subtle.js demo.</p>
+<p class="links"><a href="https://github.com/vesvault/vespost">VESpost on GitHub</a> | <a href="https://github.com/vesvault/libVES">libVES</a></p>
 
 <button type="button" onclick="return demo_unlock();">Launch VESpost</button>
 <br/>
